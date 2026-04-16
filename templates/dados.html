@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <form action="{{url_for('recebedados')}}" method="post"> <!-- explicita que o formulário é enviado pelo método post. Na prática, os dados não aparecem só com o método post
+        no action -->
+        Nome: 
+        <input type="text" name="nome"> <br>
+        Sobrenome:
+        <input type="text" name="sobrenome"> <br>
+        E-mail:
+        <input type="email" name="email"> <br>
+        Data de nasimento: <input type="date" name="datanasc">
+        Estado: <select name="estado" id="">
+            <option value="RN">Rio Grande do Norte</option>
+            <option value="CE">Ceará</option>
+            <option value="PB">Paraíba</option>
+        </select> <br>
+        Escola: <br>
+        <input type="radio" name="escola" value="IFRN">IFRN<br>
+        <input type="radio" name="escola" value="UFRN">UFRN<br>
+        <input type="radio" name="escola" value="UERN">UERN<br>
+        <input type="radio" name="escola" value="Outra">Outra<br>
+        Modalidades de interesse: <br>
+        <input type="checkbox" name="modalidade" value="Muay Thai">Muay Thai
+        <input type="checkbox" name="modalidade" value="Volei">Volei
+        <input type="checkbox" name="modalidade" value="Karate">Karatê
+        <input type="checkbox" name="modalidade" value="Handebol">Handebol
+        <input type="submit" value="Enviar">
+    </form>
+</body>
+</html>
