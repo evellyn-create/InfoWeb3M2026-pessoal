@@ -1,4 +1,4 @@
-from flask import Flask,render_template, request
+from flask import Flask,render_template, request, redirect, url_for
 from datetime import datetime
 app = Flask(__name__)
 
@@ -61,6 +61,48 @@ def compras():
 def recebecompras():
     itens = request.form.getlist('itens')
     return render_template('lista.html', itens = itens)
+
+@app.route('/verificaridade/<int:idade>')
+def verificaridade(idade):
+    if idade >= 18:
+        return "Você é maior de idade"
+    else:
+        return "Você é menor de idade"
+    
+@app.route('/login')
+def login():
+    return render_template('login.html')
+    
+@app.route('/verificarlogin', methods=['POST'])
+def verificarlogin():
+    user = request.form.get('login')
+    senha = request.form.get('senha')
+    if user == 'admin' and senha == '12345':
+        return redirect(url_for('arearestrita'))
+    else:
+        return redirect(url_for('acessonegado'))
+    
+@app.route('/arearestrita')
+def arearestrita():
+    return render_template('arearestrita.html')
+
+@app.route('/acessonegado')
+def acessonegado():
+    return render_template('acessonegado.html')
+
+
+@app.route("/exemplolaco")
+def exemplolaco():
+    return render_template('exemplolaco.html')
+
+@app.route('/produtos')
+def produtos():
+    itens = [ {'nome': 'Teclado', 'preco': '200', "categoria": "computdor"},
+              {'nome': 'Smartphone', 'preco': '150', "categoria": "celular"},
+              {'nome': 'Pendrive', 'preco': '50', "categoria": "computador"}]
+    qtd = len(itens)
+        
+    return render_template('produtos.html', itens=itens, qtd=qtd)
 
 if __name__ == "__main__":
     app.run()
